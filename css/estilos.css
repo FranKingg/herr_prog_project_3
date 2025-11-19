@@ -1,0 +1,110 @@
+/* ===================================
+   HYTACRAFT - ESTILOS BASE MEDIEVAL (SEMANA 1)
+   Rol: Desarrollador Frontend/UI
+   =================================== */
+
+/* --- 1. Estilos Globales y Fondo --- */
+body {
+    /* Fondo para el tema oscuro/medieval */
+    /* El fondo ya es 'bg-dark' (gris oscuro) por Bootstrap, podemos añadir una imagen de textura de piedra si se desea más adelante. */
+    background-color: #1a1a1a !important; /* Gris muy oscuro, casi negro */
+    color: #f0f0f0; /* Color de texto base */
+    font-family: Georgia, serif; /* Fuente clásica y legible, similar a la tipografía medieval. */
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+    color: #e0e0e0; /* Un blanco roto para los títulos */
+    /* Se puede usar una fuente web medieval aquí si se importa el archivo. */
+}
+
+/* --- 2. Estilos del HUD de Recursos --- */
+
+#hud-recursos {
+    /* La barra superior de recursos debe tener un fondo y borde sólido */
+    background-color: #333333; /* Gris oscuro para la barra */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
+}
+
+.contenedor-recurso {
+    padding: 0 15px;
+}
+
+/* Colores personalizados para los contadores */
+#contador-stone {
+    color: silver; /* Piedra */
+}
+#contador-wood {
+    color: #8b4513; /* Marrón para Madera */
+}
+#contador-gold {
+    color: gold; /* Oro */
+}
+
+/* Asegura que el logo se vea bien centrado en el HUD */
+#logo-juego {
+    /* max-height: 60px; (Ya definido en el HTML) */
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #6b6b6b; /* Borde para simular un escudo/marco */
+    border-radius: 5px;
+}
+
+/* --- 3. Estilos de Paneles de Juego --- */
+
+.panel {
+    /* Estilo para simular bloques de piedra */
+    background-color: #444444 !important; /* Fondo gris para los paneles */
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+/* Estilo específico para los títulos dentro de los paneles */
+.panel h2 {
+    border-bottom: 2px solid #6b6b6b;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* Estilo para los divisores de las minas */
+.mina {
+    border: 1px dashed #6b6b6b;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+/* --- 4. Estilos de Botones Personalizados --- */
+
+/* Ajuste general para botones */
+.btn {
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-weight: bold;
+    /* Sombras sutiles para que parezcan tener relieve */
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); 
+}
+
+/* Botón de Asedio (Acción Peligrosa) */
+.accion-peligro {
+    /* Rojo sangre o rojo oscuro para el botón de ataque */
+    background-color: #b30000 !important;
+    border-color: #7d0000 !important;
+    color: white !important;
+    transition: background-color 0.2s;
+}
+
+.accion-peligro:hover {
+    background-color: #e60000 !important;
+}
+
+/* --- 5. Estilos Responsive (Ajustes de visibilidad) --- */
+
+/* En pantallas pequeñas, el título del recurso Madera podría ser muy largo */
+@media (max-width: 768px) {
+    #hud-recursos .col-sm-6 h3 {
+        font-size: 1.1em;
+    }
+}
