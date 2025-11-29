@@ -1,0 +1,264 @@
+/* FONDO PRINCIPAL BACKGROUND */
+
+body {
+    background: url("../assets/textures/fond.png") no-repeat center center fixed;
+    background-size: cover;
+    color: #f8e4b0;
+    font-family: 'Cinzel', serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+#lava-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2; /* sobre el fondo, debajo de UI */
+}
+
+/* Cada partícula (punto de lava) */
+.lava-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, rgba(255,120,0,1) 0%, rgba(255,40,0,0.7) 60%, rgba(0,0,0,0) 100%);
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: blur(1px);
+    animation: riseUp 4s linear infinite;
+}
+
+/* Animación: sube y se desvanece */
+@keyframes riseUp {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-180px) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* ANIMACION DEL FONDO*/
+
+/* LOGO */
+.logo-fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 160px;  /* ajusta tamaño si quieres */
+    z-index: 9999; /* encima de todo */
+}
+
+.logo {
+    height: 150px;
+    filter: drop-shadow(0 0 12px rgba(255,220,130,0.7));
+    transition: 0.3s;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 22px rgba(255,230,160,1));
+    transform: scale(1.03);
+}
+
+/* --- RESOURCE BAR --- */
+.resource-box {
+    padding: 8px 18px;
+
+    border-width: 20px;
+    border-style: solid;
+    border-image: url("../assets/textures/metal_frame.png") 30 fill stretch;
+
+    background: url("../assets/textures/metal_dark.png");
+    background-size: cover;
+
+    border-radius: 0;
+
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.res-icon {
+    height: 32px;
+    margin-right: 8px;
+}
+
+/* --- PARTICULAS --- */
+
+#particles {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 220, 130, 0.8);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0px) scale(0.6);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-180px) scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* --- PANELS --- */
+.panel {
+    padding: 25px;
+    background: url("../assets/textures/panel.png");
+    background-size: cover;
+
+    /* MARCO DE METAL */
+    border-width: 45px;
+    border-style: solid;
+    border-image: url("../assets/textures/metal_frame.png") 45 fill stretch;
+
+    border-radius: 0; /* Opcional, tu frame es cuadrado */
+
+    /* Sombra medieval */
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,0.8),
+        0 0 12px rgba(0,0,0,0.6);
+}
+
+
+.panel-title {
+    text-align: center;
+    font-size: 26px;
+    color: #ffe8a3;
+    text-shadow: 0 0 10px #c79c3a, 0 0 4px #c79c3a;
+    letter-spacing: 1px;
+}
+
+
+/* --- BUTTONS --- */
+.btn-gold {
+    background: #d8a238;
+    border: 4px solid #f6d37c;
+    color: #5a381a;
+    padding: 10px 18px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn-wood {
+    background: url("../assets/textures/wood.png");
+    border: 4px solid #d8a238;
+    padding: 10px 18px;
+    color: #f2dcb6;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn-red {
+    background: #ac2b25;
+    border: 4px solid #61211c;
+    padding: 12px;
+    color: #fff5d6;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn-green {
+    background: #465f2f;
+    border: 4px solid #c6982f;
+    padding: 12px;
+    color: #e3fbc1;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-gold, .btn-wood, .btn-red, .btn-green {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-gold::after,
+.btn-wood::after,
+.btn-red::after,
+.btn-green::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(255,255,200,0.4), transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: 0.4s;
+}
+
+.btn-gold:active::after,
+.btn-wood:active::after,
+.btn-red:active::after,
+.btn-green:active::after {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+.mt-resources {
+    margin-top: 40px !important;
+}
+
+/* --- SIDE MENU --- */
+.side-menu {
+    position: fixed;
+    top: 210px !important;
+    right: 20px;
+
+    width: 380px;
+    padding: 25px;
+
+    background: url("../assets/textures/wood.png");
+    background-size: cover;
+
+    /* PANEL MEDIEVAL */
+    border-width: 40px;
+    border-style: solid;
+    border-image: url("../assets/textures/metal_frame.png") 40 fill stretch;
+
+    box-shadow:
+        0 0 20px rgba(0,0,0,0.6),
+        inset 0 0 15px rgba(0,0,0,0.7);
+
+    z-index: 9999;
+}
+
+
+#stone, #gold, #wood, .menu-title, #exp {
+    color: white;
+}
+
+/* Canvas del juego */
+#gameCanvas {
+    border: 4px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    background-color: #1a1a1a;
+    margin: 20px auto;
+    display: block;
+}
