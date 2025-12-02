@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Iniciar Sesión - Hytacraft</title>
+<style>
+    body {
+        background: #1e1e1e;
+        font-family: Arial, sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-box {
+        background: #4a5568;
+        padding: 40px;
+        border-radius: 12px;
+        width: 380px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        text-align: center;
+    }
+
+    .login-box h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0 15px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+    }
+
+    .login-box button {
+        width: 100%;
+        padding: 12px;
+        background: #4cabff;
+        color: black;
+        font-size: 17px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .login-box button:hover {
+        background: #2f9cff;
+    }
+
+    #msg {
+        margin-top: 15px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    a {
+        color: #ffe96b;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Iniciar Sesión</h2>
+
+    <form id="form-login">
+
+        <label>Nickname</label>
+        <input id="username" type="text" placeholder="Tu nickname" required>
+
+        <label>Contraseña</label>
+        <input id="password" type="password" placeholder="••••••••" required>
+
+        <button type="submit">Entrar</button>
+
+        <p style="margin-top:10px;">
+            ¿No tienes cuenta?
+            <a href="register.html">Crear cuenta</a>
+        </p>
+
+        <p id="msg"></p>
+    </form>
+</div>
+
+<script>
+document.getElementById("form-login").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let msg = document.getElementById("msg");
+
+    let res = await fetch("../php/login.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ username, password })
+    });
+
+    let data = await res.json();
+
+    if (data.success) {
+        msg.textContent = "Iniciando sesión...";
+        msg.style.color = "lime";
+
+        setTimeout(() => {
+            window.location.href = "../index.php"; // tu juego
+        }, 1200);
+    }
+    else {
+        msg.textContent = data.error;
+        msg.style.color = "red";
+    }
+});
+</script>
+
+</body>
+</html>

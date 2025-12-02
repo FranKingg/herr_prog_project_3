@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Crear Cuenta - Hytacraft</title>
+<style>
+    body {
+        background: #1e1e1e;
+        font-family: Arial, sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .register-box {
+        background: #4a5568;
+        padding: 40px;
+        border-radius: 12px;
+        width: 380px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        text-align: center;
+    }
+
+    .register-box h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+    .register-box input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0 15px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+    }
+
+    .register-box button {
+        width: 100%;
+        padding: 12px;
+        background: #ffcc00;
+        color: black;
+        font-size: 17px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .register-box button:hover {
+        background: #e6b800;
+    }
+
+    #msg {
+        margin-top: 15px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    a {
+        color: #00c3ff;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="register-box">
+    <h2>Crear Cuenta</h2>
+
+    <form id="form-register">
+
+        <label>Nickname</label>
+        <input id="username" type="text" placeholder="Tu nombre de jugador" required>
+
+        <label>Contraseña</label>
+        <input id="password" type="password" placeholder="••••••••" required>
+
+        <button type="submit">Registrarse</button>
+
+        <p style="margin-top:10px;">
+            ¿Ya tienes cuenta?
+            <a href="login.html">Inicia sesión</a>
+        </p>
+
+        <p id="msg"></p>
+    </form>
+</div>
+
+<script>
+document.getElementById("form-register").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let msg = document.getElementById("msg");
+
+    if (username.length < 3 || password.length < 4) {
+        msg.textContent = "El nombre y contraseña deben ser más largos.";
+        msg.style.color = "red";
+        return;
+    }
+
+    let res = await fetch("../php/register.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ username, password })
+    });
+
+    let data = await res.json();
+
+    if (data.success) {
+        msg.textContent = "Cuenta creada correctamente. Redirigiendo...";
+        msg.style.color = "lime";
+
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1200);
+    }
+    else {
+        msg.textContent = data.error;
+        msg.style.color = "red";
+    }
+});
+</script>
+
+</body>
+</html>

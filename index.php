@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["player_id"])) {
+    header("Location: public/login.html");
+    exit;
+}
+?>
+
+
+$usuario_id = $_SESSION["user_id"];
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
